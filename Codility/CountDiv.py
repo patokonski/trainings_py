@@ -19,7 +19,4 @@ Write an efficient algorithm for the following assumptions:
 """
 # 100
 def solution(A, B, K):
-    # write your code in Python 3.6
-    # liczba liczb podzielnych przez K w zakresie 1 ... A to -> cnt * K = A, dla B tak samo. Odejmujac trzeba pamietac
-    # ze A tez wchodzi w zakres wiec ciac trzeba od A - i
     return B // K - (A - 1) // K
