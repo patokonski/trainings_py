@@ -44,24 +44,19 @@ Write an efficient algorithm for the following assumptions:
 # 100
 def solution(S, P, Q):
     # write your code in Python 3.6
-
-    # dobra smieszki, plan jest prosty - temat to prefix sums wiec trzeba je wykorzystac
-
-    # 1) Zrobić 3 prefix sumsy zliczajace wystepowanie danego nukleotydu w danym zakresie, czwarty - T, bedzie wypadkowy
-    # jakos tak to bylo z wymiarem tego ...
+    # pre prefix sums
     prefs_A = [0] * (len(S) + 1)
     prefs_C = [0] * (len(S) + 1)
     prefs_G = [0] * (len(S) + 1)
-    # teraz czeba zrobic tego summ -> chyba suma w p[1] to p[0] + s[0]?!?! :(
-    # no to siup
+    # calc prefix sums
     for i in range(1, len(S) + 1):
         prefs_A[i] = prefs_A[i - 1] + ((dejNukleo(S[i - 1]) % 4) % 3) % 2
         prefs_C[i] = prefs_C[i - 1] + ((dejNukleo(S[i - 1]) % 4) % 3) // 2
         prefs_G[i] = prefs_G[i - 1] + (dejNukleo(S[i - 1]) % 4) // 3
 
-    # resulty
+    # pre results
     results = [0] * len(P)
-    # kolejna petelka bedzie dla kolegow P i Q, wiec zlozonosc bedzie O(N + M), a P i Q takie same wiec po dlugosci P
+    # O(N + M)
     for i in range(len(P)):
         # literka A
         if prefs_A[Q[i] + 1] - prefs_A[P[i]] > 0:
@@ -79,7 +74,7 @@ def solution(S, P, Q):
     return results
 
 
-# dodatkowa funkcja zwracajaca cyferka za literka
+# 
 def dejNukleo(s):
     if s == "A":
         return 1
